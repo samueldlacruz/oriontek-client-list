@@ -1,0 +1,6 @@
+node_modules
+package.json
+public/images
+.env
+.*
+README.md
