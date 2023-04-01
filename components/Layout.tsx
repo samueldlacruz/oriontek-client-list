@@ -8,6 +8,8 @@ type Props = {
 	title?: string
 }
 
+const currentYear = new Date().getFullYear()
+
 const Layout = ({ children, title = 'Client Panel' }: Props) => (
 	<div>
 		<Head>
@@ -17,7 +19,7 @@ const Layout = ({ children, title = 'Client Panel' }: Props) => (
 		</Head>
 		<Header logoSrc="svgs/users.svg" appName="Clients Panel" />
 
-		<div className="bg-gray-200/50">{children}</div>
+		<div className="bg-gray-200/50 h-screen">{children}</div>
 
 		<Footer>
 			<div className="flex w-full my-3 justify-between">
@@ -27,7 +29,7 @@ const Layout = ({ children, title = 'Client Panel' }: Props) => (
 				</article>
 
 				<div>
-					<strong>copyright &copy; {new Date().getFullYear()}</strong>
+					<strong>copyright &copy; {currentYear}</strong>
 				</div>
 			</div>
 		</Footer>
