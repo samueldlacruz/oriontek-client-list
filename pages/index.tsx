@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import Button from '../components/Atoms/Button'
 import Card from '../components/Atoms/Card'
-import Layout from '../components/Layout'
-import Modal from '../components/Atoms/Modal'
-import DataTable from '../components/Atoms/DataTable'
 import Input from '../components/Atoms/Input'
+import Modal from '../components/Atoms/Modal'
+import Layout from '../components/Layout'
+import DataTable from '../components/Molecules/DataTable'
 
 const columns = [
 	{ key: 'firstName', header: 'First Name' },
@@ -17,6 +17,23 @@ const columns = [
 ]
 
 const data = [
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
+	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
 	{ name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
 	{ name: 'Jane Smith', email: 'janesmith@example.com', phone: '555-555-5555' },
 	{ name: 'Bob Johnson', email: 'bobjohnson@example.com', phone: '555-555-5555' }
@@ -51,8 +68,15 @@ const IndexPage = () => {
 							placeholder="Search a client"
 						/>
 					</div>
-					<div className="mt-3">
-						<DataTable keyIdentifier="client-table" data={data} columns={columns} />
+					<div className="mt-3 px-2 pb-4">
+						<DataTable
+							keyIdentifier="client-table"
+							data={data}
+							columns={columns}
+							pagination={{
+								rowsPerPage: 10
+							}}
+						/>
 					</div>
 				</Card>
 

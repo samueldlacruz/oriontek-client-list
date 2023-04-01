@@ -4,13 +4,13 @@ export interface RenderColumnI {
 	(params: { row: unknown; data: unknown | Array<unknown> }): ReactNode
 }
 
-export interface DataTableI {
+export interface TableI {
 	keyIdentifier: string
-	columns: Array<DataTableColumnI>
+	columns: Array<TableColumnI>
 	data: Array<any>
 }
 
-export interface DataTableColumnI {
+export interface TableColumnI {
 	key: string
 	header: string | ReactNode
 	renderColumn?: RenderColumnI | ReactNode
