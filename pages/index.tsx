@@ -1,9 +1,19 @@
+import { useState } from 'react'
 import Button from '../components/Atoms/Button'
 import Card from '../components/Atoms/Card'
 import Layout from '../components/Layout'
+import Modal from '../components/Atoms/Modal'
 
 const IndexPage = () => {
-	const handleClickNewClient = () => {}
+	const [showNewAccountModal, setShowNewAccountModal] = useState(false)
+
+	const handleClickNewClient = () => {
+		setShowNewAccountModal(true)
+	}
+
+	const handleCloseNewAccountModal = () => {
+		setShowNewAccountModal(false)
+	}
 
 	return (
 		<Layout title="Client List">
@@ -12,6 +22,12 @@ const IndexPage = () => {
 					<Button onClick={handleClickNewClient}>New Client</Button>
 				</div>
 				<Card Title="Clients">content</Card>
+
+				{showNewAccountModal && (
+					<Modal isOpen={showNewAccountModal} onClose={handleCloseNewAccountModal}>
+						content form
+					</Modal>
+				)}
 			</section>
 		</Layout>
 	)
