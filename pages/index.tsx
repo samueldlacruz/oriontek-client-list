@@ -4,6 +4,7 @@ import Card from '../components/Atoms/Card'
 import Layout from '../components/Layout'
 import Modal from '../components/Atoms/Modal'
 import DataTable from '../components/Atoms/DataTable'
+import Input from '../components/Atoms/Input'
 
 const columns = [
 	{ key: 'firstName', header: 'First Name' },
@@ -40,7 +41,19 @@ const IndexPage = () => {
 				</div>
 
 				<Card Title="Clients">
-					<DataTable keyIdentifier="client-table" data={data} columns={columns} />
+					<div className="ml-2 w-64">
+						<Input
+							type="search"
+							addon={{
+								position: 'left',
+								src: 'svgs/search.svg'
+							}}
+							placeholder="Search a client"
+						/>
+					</div>
+					<div className="mt-3">
+						<DataTable keyIdentifier="client-table" data={data} columns={columns} />
+					</div>
 				</Card>
 
 				{showNewAccountModal && (

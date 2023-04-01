@@ -10,6 +10,25 @@
 	}
 
 	body {
-		@apply bg-gray-200/50;
+		@apply bg-gray-200/50 h-screen p-0 m-0 flex flex-col min-h-screen;
+	}
+}
+
+@layer components {
+	.app-input {
+		@apply p-2 text-[#b9bcc1] border rounded-md border-solid border-[#bababa] font-semibold w-full text-sm;
+	}
+
+	.app-input::placeholder {
+		@apply font-medium text-[#39414f80] opacity-80 leading-4 text-[14px];
+	}
+
+	.app-input:-ms-input-placeholder {
+		color: #39414f80;
+	}
+
+	.app-input:focus {
+		outline: none !important;
+		outline-offset: none !important;
 	}
 }

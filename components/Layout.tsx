@@ -11,12 +11,13 @@ type Props = {
 const currentYear = new Date().getFullYear()
 
 const Layout = ({ children, title = 'Client Panel' }: Props) => (
-	<div>
+	<>
 		<Head>
 			<title>{title}</title>
 			<meta charSet="utf-8" />
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 		</Head>
+
 		<Header logoSrc="svgs/users.svg" appName="Clients Panel" />
 
 		<main className="h-full">{children}</main>
@@ -33,7 +34,7 @@ const Layout = ({ children, title = 'Client Panel' }: Props) => (
 				</div>
 			</div>
 		</Footer>
-	</div>
+	</>
 )
 
 export default Layout
