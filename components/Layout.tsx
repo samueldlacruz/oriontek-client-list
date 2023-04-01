@@ -19,11 +19,11 @@ const Layout = ({ children, title = 'Client Panel' }: Props) => (
 		</Head>
 		<Header logoSrc="svgs/users.svg" appName="Clients Panel" />
 
-		<div className="bg-gray-200/50 h-screen">{children}</div>
+		<main className="h-full">{children}</main>
 
 		<Footer>
-			<div className="flex w-full my-3 justify-between">
-				<article>
+			<div className="flex md:flex-row flex-col w-full my-2 justify-between">
+				<article className="mb-2">
 					<span className="pr-4">Client Panel</span>
 					<span className="font-medium">X Company</span>
 				</article>
