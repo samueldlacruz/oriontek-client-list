@@ -6,7 +6,7 @@ const Button = (props: ButtonI) => {
 	return (
 		<button
 			className={`${className} py-2 px-3 text-base font-medium ${color ? `text-${color}` : 'text-white'} ${
-				backgroundColor ? `bg-${backgroundColor}` : 'bg-blue-700'
+				backgroundColor ? `${backgroundColor}` : 'bg-blue-700'
 			} ${withRounded ? 'rounded' : ''}`.trim()}
 			{...restProps}
 		>
