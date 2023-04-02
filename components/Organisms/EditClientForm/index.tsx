@@ -2,15 +2,15 @@ import React, { useCallback, useState } from 'react'
 import { countries } from '../../../constants/countries'
 import Button from '../../Atoms/Button'
 import FormField from '../../Molecules/FormField'
-import { FormData, NewClientFormProps } from './new-client-form.interface'
+import { FormData, EditClientFormProps } from './edit-client-form.interface'
 
-const NewCLientForm = ({ onSubmit }: NewClientFormProps) => {
+const EditCLientForm = ({ onSubmit, client }: EditClientFormProps) => {
 	const [formData, setFormData] = useState<FormData>({
-		firstName: '',
-		lastName: '',
-		email: '',
-		country: 'USA',
-		phone: ''
+		firstName: client.firstName,
+		lastName: client.lastName,
+		email: client.email,
+		country: client.country,
+		phone: client.phone
 	})
 
 	const [errors, setErrors] = useState<Partial<FormData>>({})
@@ -113,11 +113,11 @@ const NewCLientForm = ({ onSubmit }: NewClientFormProps) => {
 			</div>
 			<div className="col-span-2">
 				<Button type="submit" className="w-full">
-					Create
+					Save
 				</Button>
 			</div>
 		</form>
 	)
 }
 
-export default NewCLientForm
+export default EditCLientForm

@@ -1,8 +1,9 @@
+import { ClientI } from '../../../interfaces/Client'
 import Button from '../../Atoms/Button'
 import { TableColumnI } from '../../Atoms/Table/table.interface'
 import { ColumnsClientTableI } from './client-list.interface'
 
-const ColumnsClientTable = ({ children }: ColumnsClientTableI) => {
+const ColumnsClientTable = ({ children, handleColumnClick }: ColumnsClientTableI) => {
 	const columns: TableColumnI[] = [
 		{ key: 'firstName', header: 'First Name' },
 		{ key: 'lastName', header: 'Last Name' },
@@ -10,8 +11,7 @@ const ColumnsClientTable = ({ children }: ColumnsClientTableI) => {
 		{ key: 'phone', header: 'Phone' },
 		{
 			key: 'country',
-			header: 'Country',
-			renderColumn: () => <>{'USA'}</>
+			header: 'Country'
 		},
 		{
 			key: 'Addresses',
@@ -39,9 +39,9 @@ const ColumnsClientTable = ({ children }: ColumnsClientTableI) => {
 		{
 			key: 'actions',
 			header: 'Actions',
-			renderColumn: () => (
+			renderColumn: ({ row }: { row: ClientI }) => (
 				<div className="flex gap-2">
-					<Button className="h-10 px-4">
+					<Button className="h-10 px-4" onClick={() => handleColumnClick('edit', row)}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -57,7 +57,7 @@ const ColumnsClientTable = ({ children }: ColumnsClientTableI) => {
 							/>
 						</svg>
 					</Button>
-					<Button backgroundColor="bg-red-700" className="h-10">
+					<Button backgroundColor="bg-red-700" onClick={() => handleColumnClick('remove', row.uuid)} className="h-10">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"

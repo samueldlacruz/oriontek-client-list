@@ -1,14 +1,19 @@
 import React from 'react'
 import Input from '../Atoms/Input'
 
-const Search = ({ placeholder, onChange }: { placeholder: string; onChange: (value: string) => void }) => {
-	const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-		onChange && onChange(ev.target.value)
-	}
-
+const Search = ({
+	placeholder,
+	value,
+	onChange: handleChange
+}: {
+	placeholder: string
+	value: string
+	onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
+}) => {
 	return (
 		<Input
 			type="search"
+			value={value}
 			addon={{
 				position: 'left',
 				src: 'svgs/search.svg'

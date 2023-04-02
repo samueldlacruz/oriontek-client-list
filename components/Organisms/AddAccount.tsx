@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
-import NewCLientForm from './NewClientForm'
+import { useState } from 'react'
+import useClientContext from '../../context/clients/useClients'
+import { addClient } from '../../reducers/clients/clients.actions'
 import Button from '../Atoms/Button'
 import Modal from '../Atoms/Modal'
+import NewCLientForm from './NewClientForm'
+import { FormData } from './NewClientForm/new-client-form.interface'
 
 const AddAccount = () => {
+	const { dispatch } = useClientContext()
 	const [showNewAccountModal, setShowNewAccountModal] = useState(false)
 
-	const handleClickNewClient = () => {
+	const handleShowNewClient = () => {
 		setShowNewAccountModal(true)
 	}
 
@@ -14,10 +18,21 @@ const AddAccount = () => {
 		setShowNewAccountModal(false)
 	}
 
+	const handleNewClient = (payload: FormData) => {
+		dispatch(
+			addClient({
+				uuid: crypto.randomUUID(),
+				addresses: [],
+				...payload
+			})
+		)
+		handleCloseNewAccountModal()
+	}
+
 	return (
 		<>
 			<div className="flex justify-end items-end">
-				<Button onClick={handleClickNewClient}>New Client</Button>
+				<Button onClick={handleShowNewClient}>New Client</Button>
 			</div>
 
 			{showNewAccountModal && (
@@ -44,7 +59,7 @@ const AddAccount = () => {
 								</div>
 							</div>
 
-							<NewCLientForm onSubmit={() => {}} />
+							<NewCLientForm onSubmit={handleNewClient} />
 						</div>
 					)}
 				</Modal>

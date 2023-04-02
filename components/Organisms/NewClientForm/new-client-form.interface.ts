@@ -1,5 +1,11 @@
-import { ClientI } from '../../../interfaces/Client'
-
 export interface NewClientFormProps {
-	onSubmit: (data: ClientI) => void
+	onSubmit: (data: FormData) => void
+}
+
+export type FormData = {
+	firstName: string
+	lastName: string
+	email: string
+	phone: string
+	country: string
 }
