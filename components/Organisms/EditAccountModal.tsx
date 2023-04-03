@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 import useClientContext from '../../context/clients/useClients'
 import { ClientI } from '../../interfaces/Client'
 import { editClient } from '../../reducers/clients/clients.actions'
@@ -10,6 +11,12 @@ const EditAccountModal = ({ isOpen, handleClose, client }: { isOpen: boolean; ha
 	const handleEditClient = (payload: FormData) => {
 		dispatch(editClient({ ...client, ...payload }))
 		handleClose()
+		Swal.fire({
+			title: 'Edit Account',
+			text: 'Account updated successfully',
+			icon: 'success',
+			timer: 5000
+		})
 	}
 
 	return (

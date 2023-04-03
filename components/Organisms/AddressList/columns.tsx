@@ -1,54 +1,18 @@
-import { countries } from '../../../constants/countries'
-import { ClientI } from '../../../interfaces/Client'
+import { AddressI } from '../../../interfaces/Address'
 import Button from '../../Atoms/Button'
 import { TableColumnI } from '../../Atoms/Table/table.interface'
-import { ColumnsClientTableI } from './client-list.interface'
+import { ColumnsAddressesTableI } from './address-list.interface'
 
-const ColumnsClientTable = ({ children, handleColumnClick }: ColumnsClientTableI) => {
+const ColumnsAddressTable = ({ children, handleColumnClick }: ColumnsAddressesTableI) => {
 	const columns: TableColumnI[] = [
-		{ key: 'firstName', header: 'First Name' },
-		{ key: 'lastName', header: 'Last Name' },
-		{ key: 'email', header: 'Email' },
-		{ key: 'phone', header: 'Phone' },
-		{
-			key: 'country',
-			header: 'Country',
-			renderColumn: ({ row }: { row: ClientI }) => (
-				<div>
-					<span>
-						{countries[row.country]} <small>({row.country})</small>
-					</span>
-				</div>
-			)
-		},
-		{
-			key: 'Addresses',
-			header: 'addresses',
-			renderColumn: ({ row }: { row: ClientI }) => (
-				<div className="flex w-full justify-center items-center pr-10 text-center">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						strokeWidth={1.5}
-						stroke="currentColor"
-						onClick={() => handleColumnClick('showAddresses', row)}
-						className="w-6 h-6 cursor-pointer"
-					>
-						<path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-						/>
-					</svg>
-				</div>
-			)
-		},
+		{ key: 'street', header: 'Street' },
+		{ key: 'city', header: 'City' },
+		{ key: 'state', header: 'State' },
+		{ key: 'zip', header: 'Zip code' },
 		{
 			key: 'actions',
 			header: 'Actions',
-			renderColumn: ({ row }: { row: ClientI }) => (
+			renderColumn: ({ row }: { row: AddressI }) => (
 				<div className="flex gap-2">
 					<Button className="h-10 px-4" onClick={() => handleColumnClick('edit', row)}>
 						<svg
@@ -66,7 +30,7 @@ const ColumnsClientTable = ({ children, handleColumnClick }: ColumnsClientTableI
 							/>
 						</svg>
 					</Button>
-					<Button backgroundColor="bg-red-700" onClick={() => handleColumnClick('remove', row.uuid)} className="h-10">
+					<Button backgroundColor="bg-red-700" onClick={() => handleColumnClick('remove', row)} className="h-10">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -90,4 +54,4 @@ const ColumnsClientTable = ({ children, handleColumnClick }: ColumnsClientTableI
 	return children({ columns })
 }
 
-export default ColumnsClientTable
+export default ColumnsAddressTable

@@ -8,6 +8,8 @@ import ColumnsClientTable from './columns'
 import { deleteClient } from '../../../reducers/clients/clients.actions'
 import useClientContext from '../../../context/clients/useClients'
 import EditAccountModal from '../EditAccountModal'
+import AddressesModal from '../AddressesModal'
+import Swal from 'sweetalert2'
 
 const ClientList = ({ clients }: { clients: Array<ClientI> }) => {
 	const { dispatch } = useClientContext()
@@ -15,6 +17,7 @@ const ClientList = ({ clients }: { clients: Array<ClientI> }) => {
 	const [searchTerm, setSearchTerm] = useState('')
 	const [selectClient, setSelectClient] = useState<ClientI>({} as ClientI)
 	const [showEditAccountModal, setShowEditAccountModal] = useState(false)
+	const [showAddressesModal, setShowAddressesModal] = useState(false)
 
 	const filteredClients = clients.filter((client) => {
 		const values = Object.values(client).join(' ').toLowerCase()
@@ -26,12 +29,28 @@ const ClientList = ({ clients }: { clients: Array<ClientI> }) => {
 	}
 
 	const handleDeleteClient = (clientUuid: string) => {
-		dispatch(deleteClient(clientUuid))
+		Swal.fire({
+			icon: 'question',
+			text: `Are you sure you want to delete this client?`,
+			showCancelButton: true
+		}).then(({ isConfirmed }) => {
+			if (isConfirmed) {
+				dispatch(deleteClient(clientUuid))
+
+				Swal.fire({
+					title: 'Remove Account',
+					text: 'Account removed successfully',
+					icon: 'success',
+					timer: 5000
+				})
+			}
+		})
 	}
 
 	const handleColumnClick = (action: string, value?: any) => {
 		const actions: { [key: string]: () => void } = {
 			remove: () => handleDeleteClient(value),
+			showAddresses: () => [setShowAddressesModal(true), setSelectClient(value)],
 			edit: () => [setShowEditAccountModal(true), setSelectClient(value)]
 		}
 
@@ -64,6 +83,13 @@ const ClientList = ({ clients }: { clients: Array<ClientI> }) => {
 					client={selectClient}
 					isOpen={showEditAccountModal}
 					handleClose={() => setShowEditAccountModal(false)}
+				/>
+			)}
+			{showAddressesModal && (
+				<AddressesModal
+					client={selectClient}
+					isOpen={showAddressesModal}
+					handleClose={() => setShowAddressesModal(false)}
 				/>
 			)}
 		</section>

@@ -5,6 +5,7 @@ import Button from '../Atoms/Button'
 import Modal from '../Atoms/Modal'
 import NewCLientForm from './NewClientForm'
 import { FormData } from './NewClientForm/new-client-form.interface'
+import Swal from 'sweetalert2'
 
 const AddAccount = () => {
 	const { dispatch } = useClientContext()
@@ -27,6 +28,12 @@ const AddAccount = () => {
 			})
 		)
 		handleCloseNewAccountModal()
+		Swal.fire({
+			title: 'New Account',
+			text: 'New Account created successfully',
+			icon: 'success',
+			timer: 5000
+		})
 	}
 
 	return (
