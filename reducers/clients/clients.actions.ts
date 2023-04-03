@@ -29,7 +29,7 @@ interface EditAddressAction {
 	type: Types.EDIT_ADDRESS
 	payload: {
 		clientUuid: string
-		addressIndex: number
+		addressIndex: string
 		address: AddressI
 	}
 }
@@ -38,7 +38,7 @@ interface DeleteAddressAction {
 	type: Types.DELETE_ADDRESS
 	payload: {
 		clientUuid: string
-		addressIndex: number
+		addressIndex: string
 	}
 }
 
@@ -65,7 +65,7 @@ export const addAddress = (clientUuid: string, address: AddressI): AddAddressAct
 	}
 })
 
-export const editAddress = (clientUuid: string, addressIndex: number, address: AddressI): EditAddressAction => ({
+export const editAddress = (clientUuid: string, addressIndex: string, address: AddressI): EditAddressAction => ({
 	type: Types.EDIT_ADDRESS,
 	payload: {
 		clientUuid,
@@ -74,7 +74,7 @@ export const editAddress = (clientUuid: string, addressIndex: number, address: A
 	}
 })
 
-export const deleteAddress = (clientUuid: string, addressIndex: number): DeleteAddressAction => ({
+export const deleteAddress = (clientUuid: string, addressIndex: string): DeleteAddressAction => ({
 	type: Types.DELETE_ADDRESS,
 	payload: {
 		clientUuid,

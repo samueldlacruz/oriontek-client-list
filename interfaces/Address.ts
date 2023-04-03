@@ -3,4 +3,5 @@ export interface AddressI {
 	city: string
 	state: string
 	zip: string
+	addressIndex?: string
 }

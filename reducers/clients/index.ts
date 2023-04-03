@@ -36,8 +36,8 @@ export const clientsReducer = (state: ClientState, action: ClientAction) => {
 				client.uuid === action.payload.clientUuid
 					? {
 							...client,
-							addresses: client.addresses.map((address, index) =>
-								index === action.payload.addressIndex ? action.payload.address : address
+							addresses: client.addresses.map((address) =>
+								address.addressIndex === action.payload.addressIndex ? action.payload.address : address
 							)
 					  }
 					: client
@@ -50,7 +50,7 @@ export const clientsReducer = (state: ClientState, action: ClientAction) => {
 				client.uuid === action.payload.clientUuid
 					? {
 							...client,
-							addresses: client.addresses.filter((_, index) => index !== action.payload.addressIndex)
+							addresses: client.addresses.filter((address) => address.addressIndex !== action.payload.addressIndex)
 					  }
 					: client
 			)
